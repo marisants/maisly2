@@ -1,0 +1,483 @@
+[theme = 'light'] {
+    --cor-fundo-principal: #CDCDCD;
+    --cor-da-div-corpo: #fff;
+    --cor-do-botao: #000;
+    --cor-do-fundo-pesquisar: #000;
+    --cor-do-nome-pesquisar: #FFF;
+    --cor-do-header: #FFF;
+    --cor-da-parte2: #fff;
+    --cor-das-linhas: #000;
+    --cor-do-nome-sair: #fff;
+    --cor-dos-navs: #000;
+    --cor-icone-nao-selecionado: #fff;
+    --cor-hover-icones: #d9d9d9;
+    --cor-menu-nav-texto: #000;
+    --cor-menu-temas: #FFF;
+    --cor-icones: none;
+    --cor-icones-parte1: none;
+    --cor-icone-especial: none;
+    --cor-texto-menutenis: #000;
+    --cor-valor: #0095D0;
+    --cor-texto-corpo: #000;
+    --cor-botao: none;
+}
+[theme='dark'] {
+    --cor-fundo-principal: #282626;
+    --cor-da-div-corpo: #474747;
+    --cor-do-botao: #282626;
+    --cor-do-fundo-pesquisar: #fff;
+    --cor-do-nome-pesquisar: #000;
+    --cor-do-header: #282626;
+    --cor-da-parte2: #282626;
+    --cor-das-linhas: #fff;
+    --cor-do-nome-sair: #fff;
+    --cor-dos-navs: #fff;
+    --cor-icone-nao-selecionado: #282626;
+    --cor-hover-icones: #d9d9d9;
+    --cor-menu-nav-texto: #FFF;
+    --cor-menu-temas: #474747;
+    --cor-icones: brightness(0) invert(1);
+    --cor-icones-parte1: brightness(0) invert(1);
+    --cor-icone-especial: none;
+    --cor-texto-menutenis: #FFF;
+    --cor-valor: #0095D0;
+    --cor-texto-corpo: #FFF;
+    --cor-botao: brightness(0) invert(1);;
+}
+[theme = 'baixa'] {
+    --cor-fundo-principal: #fff;
+    --cor-da-div-corpo: #1D0769;
+    --cor-do-botao: #282626;
+    --cor-do-fundo-pesquisar: #1D0769;
+    --cor-do-nome-pesquisar: #EAD811;
+    --cor-do-header: #FFF;
+    --cor-da-parte2: #321597;
+    --cor-das-linhas: #000;
+    --cor-do-nome-sair: #EAD811;
+    --cor-dos-navs: #1D0769;
+    --cor-icone-nao-selecionado: #fff;
+    --cor-hover-icones: #EAD811;
+    --cor-menu-nav-texto: #EAD811;
+    --cor-menu-temas: #1D0769;
+    --cor-icones: brightness(0) saturate(100%) invert(87%) sepia(70%) saturate(5000%) hue-rotate(2deg);
+    --cor-icones-parte1: brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);
+    --cor-icone-especial:brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);
+    --cor-texto-menutenis: #1D0769;
+    --cor-valor: #EAD811;
+    --cor-texto-corpo: #EAD811;
+    --cor-botao: brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);;
+}
+*{
+    margin: 0;
+}
+header{
+    background-color: var(--cor-do-header);
+}
+#parte1{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 20px 20px;
+}
+#pesquisar{
+    background-color: var(--cor-do-fundo-pesquisar);
+    border-radius: 15px;
+    color: var(--cor-do-nome-pesquisar);
+    padding: 2px 120px 2px 20px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+input::placeholder{
+    color: var(--cor-do-nome-pesquisar);
+}
+#parte2{
+    height: 30px;
+    border-top: 3px solid var(--cor-das-linhas);
+    border-bottom: 3px solid var(--cor-das-linhas);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 50px;
+    padding-right: 20px;
+    background-color: var(--cor-da-parte2);
+    color: var(--cor-menu-nav-texto);
+}
+.p{
+    border-right: 2px solid var(--cor-das-linhas);
+    padding-right: 20px;
+}
+body{
+    background-color: var(--cor-fundo-principal);
+}
+#iconestl{
+height: 20px;
+width: 20px;
+vertical-align: middle;
+margin-right: 5px;
+}
+.botaotype{
+   padding: 10px;
+    border-radius: 100%;
+    border: none;
+    background-color: var(--cor-icone-nao-selecionado);
+    width: 45px;
+    height: 45px;
+
+}
+.botaotype img{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    filter: var(--cor-icones);
+    cursor: pointer;
+}
+#icones{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.botaotype:hover{
+    background-color: var(--cor-hover-icones);
+}
+
+#navtenis{
+    gap: 10px;
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+    font-size: large;
+}
+#navtenis img{
+    margin-top: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+    color: var(--cor-menu-temas);
+}
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 10px;
+    gap: 70px;
+    padding-top: 20px;
+    color: var(--cor-menu-nav-texto);
+}
+#menutenis p{
+    color: var(--cor-texto-menutenis);
+}
+#block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 170px;
+    height: 180px;
+    
+}
+#block:hover{
+    background-color:  rgb(180, 180, 180);
+    cursor: pointer;
+}
+.temas {
+    display: none;
+    position: absolute;
+    background-color: var(--cor-menu-temas);
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    border-radius: 10px;
+}
+.menu-temas:hover .temas {
+    display: block;
+}
+#iconestl {
+    filter: var(--cor-icones);
+}
+#parte1 img{
+    filter: var(--cor-icones-parte1);
+}
+#parte2 .p {
+    cursor: pointer;
+}
+.temas p {
+    cursor: pointer; 
+}
+.p-a{
+   cursor: pointer; 
+}
+.logo{
+    cursor: pointer;
+}
+
+
+
+
+
+#tenis{
+width: 100px;
+height: 100px;
+}
+
+#tudo{
+    width: 1190px;
+    height: 200px;
+    background-color: var(--cor-da-div-corpo);
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#tenisimg img{
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+}
+
+#botao{
+    color: #fff;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    border:  none;
+    background-color: rgb(0, 0, 0);
+}
+#botao:hover{
+background-color: rgb(197, 197, 197);
+color: #000000;
+
+}
+#botao img{
+    filter: brightness(0) invert(1);
+}
+#corverde{
+    color: rgb(159, 228, 91);
+}
+#itens{
+    gap: 40px;
+    padding: 40px;
+    display: flex;
+    text-align: left;
+
+}
+#textonome{
+    padding: 20px 0px;
+     margin-top: 10px;
+    
+}
+#container{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+#botcompra{
+    padding: 0px 100px;
+} 
+a {
+    text-decoration: none;
+    color: black;
+}
+#textall{
+    white-space: nowrap;
+}
+
+/* SIDEBAR */
+
+.sidebar-icon{
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    padding-right: 20px;
+    border-right: 2px solid #000;
+}
+.sidebar{
+    padding-top: 50px;
+    height: 1000vh;
+    width: 0; /* começa fechado */
+    position: fixed;
+    top: 0; /*mudei isso*/
+    left: 0; /* se quiser do lado direito, troque para right: 0 */
+    z-index: 1000;
+    flex-direction: column;
+    background-color: #fff;
+    color: #000;
+    gap: 10px;
+    overflow-x: hidden; /* esconde o conteúdo quando fechado */
+    transition: width 0.3s ease; /* animação suave */
+    display: flex;
+    margin: 0;
+}
+.sidebar.open{
+    width: 200px;/* e mudei isso (tava 250)*/
+}
+.sidebar a{
+    cursor: pointer;
+    padding: 10px 0px 10px 30px;
+    border-radius: 15px;
+}
+.sidebar a:hover{
+    margin: 10px;
+    background-color: #CDCDCD;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+    #parte1 {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    #parte2{
+        justify-content: start;
+    }
+    #pesquisar {
+        display: none;
+    }
+
+    #icones {
+        gap: 10px;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    #container {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+    #tudo{
+         flex-direction: column;
+        width: 714px;
+        height: 300px;
+    }
+    #botcompra{
+            display: flex;
+    justify-content: center;
+    height: 100%;
+    margin-top: -30px;
+    }
+    .sidebar-icon{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #a{
+        display: none;
+    }
+    .p-a{
+        display: none;
+    }
+    .p{
+        border: none;
+        padding-left: 0px;
+        cursor: pointer;
+    }
+    .sidebarnormal{
+        display: none;
+    }
+
+
+}
+
+
+@media (max-width: 767px) {
+    
+    #parte1 {
+        justify-content: space-between;
+    }
+
+    #pesquisar {
+        display: none;
+    }
+    .menu{
+        display: none;
+    }
+
+    #icones {
+        gap: 10px;
+        justify-content: center;
+    }
+
+    #parte2 {
+        justify-content: start;
+    }
+
+    #menutenis {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #block {
+        width: 120px;
+        height: auto;
+    }
+
+    #block img {
+        width: 100px;
+        height: 100px;
+    }
+
+    #container {
+        width: 80%;
+        height: auto;
+        padding: 15px;
+    }
+    #menucompra{
+       display: flex;
+       flex-direction: column;
+       align-items: center;
+       
+    }
+    #botcompra{
+    height: 30%;
+    margin-top: -20px;
+    }
+
+    #botao {
+        
+        width: 200px;
+        height: 50px;
+        font-size: 15px;
+    }
+    #tudo{
+        flex-direction: column;
+        width: 390px;
+        height: 500px;
+    }
+    #tenisimg img{
+        width: 200px;
+        height: 200px;
+        
+    }
+    #textall{
+        font-size:90%;
+        margin-top: -20px;
+        
+    }
+    #itens{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .sidebar-icon{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #a{
+        display: none;
+    }
+    .p-a{
+        display: none;
+    }
+    .p{
+        border: none;
+        padding-left: 0px;
+        cursor: pointer;
+    }
+    .sidebarnormal{
+        display: none;
+    }
+}

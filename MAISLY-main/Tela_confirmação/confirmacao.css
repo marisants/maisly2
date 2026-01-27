@@ -1,0 +1,528 @@
+[theme = 'light'] {
+    --cor-fundo-principal: #CDCDCD;
+    --cor-da-div-corpo: #fff;
+    --cor-do-botao: #000;
+    --cor-do-fundo-pesquisar: #000;
+    --cor-do-nome-pesquisar: #FFF;
+    --cor-do-header: #FFF;
+    --cor-da-parte2: #fff;
+    --cor-das-linhas: #000;
+    --cor-do-nome-sair: #fff;
+    --cor-dos-navs: #000;
+    --cor-icone-nao-selecionado: #fff;
+    --cor-hover-icones: #d9d9d9;
+    --cor-menu-nav-texto: #000;
+    --cor-menu-temas: #FFF;
+    --cor-icones: none;
+    --cor-icones-parte1: none;
+    --cor-icone-especial: none;
+    --cor-texto-menutenis: #000;
+    --cor-valor: #0095D0;
+    --cor-texto-corpo: #000;
+    --cor-botao: none;
+}
+[theme='dark'] {
+    --cor-fundo-principal: #282626;
+    --cor-da-div-corpo: #474747;
+    --cor-do-botao: #282626;
+    --cor-do-fundo-pesquisar: #fff;
+    --cor-do-nome-pesquisar: #000;
+    --cor-do-header: #282626;
+    --cor-da-parte2: #282626;
+    --cor-das-linhas: #fff;
+    --cor-do-nome-sair: #fff;
+    --cor-dos-navs: #fff;
+    --cor-icone-nao-selecionado: #282626;
+    --cor-hover-icones: #d9d9d9;
+    --cor-menu-nav-texto: #FFF;
+    --cor-menu-temas: #474747;
+    --cor-icones: brightness(0) invert(1);
+    --cor-icones-parte1: brightness(0) invert(1);
+    --cor-icone-especial: none;
+    --cor-texto-menutenis: #FFF;
+    --cor-valor: #0095D0;
+    --cor-texto-corpo: #FFF;
+    --cor-botao: brightness(0) invert(1);;
+}
+[theme = 'baixa'] {
+    --cor-fundo-principal: #fff;
+    --cor-da-div-corpo: #1D0769;
+    --cor-do-botao: #282626;
+    --cor-do-fundo-pesquisar: #1D0769;
+    --cor-do-nome-pesquisar: #EAD811;
+    --cor-do-header: #FFF;
+    --cor-da-parte2: #321597;
+    --cor-das-linhas: #000;
+    --cor-do-nome-sair: #EAD811;
+    --cor-dos-navs: #1D0769;
+    --cor-icone-nao-selecionado: #fff;
+    --cor-hover-icones: #EAD811;
+    --cor-menu-nav-texto: #EAD811;
+    --cor-menu-temas: #1D0769;
+    --cor-icones: brightness(0) saturate(100%) invert(87%) sepia(70%) saturate(5000%) hue-rotate(2deg);
+    --cor-icones-parte1: brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);
+    --cor-icone-especial:brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);
+    --cor-texto-menutenis: #1D0769;
+    --cor-valor: #EAD811;
+    --cor-texto-corpo: #EAD811;
+    --cor-botao: brightness(0) saturate(100%) invert(11%) sepia(93%) saturate(6162%) hue-rotate(229deg) brightness(92%) contrast(122%);;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+ 
+body {
+    background-color: var(--cor-fundo-principal);
+}
+ 
+header {
+    background-color: var(--cor-do-header);
+}
+ 
+#parte1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+ 
+#pesquisar {
+    background-color: var(--cor-do-fundo-pesquisar);
+    border-radius: 15px;
+    color: var(--cor-do-nome-pesquisar);
+    padding: 2px 120px 2px 20px;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+ 
+input::placeholder {
+    color: var(--cor-do-nome-pesquisar);
+}
+ 
+#parte2 {
+    height: 30px;
+    border-top: 3px solid var(--cor-das-linhas);
+    border-bottom: 3px solid var(--cor-das-linhas);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 50px;
+    padding-right: 20px;
+}
+ 
+.p {
+    border-right: 2px solid var(--cor-das-linhas);
+    padding-right: 20px;
+}
+ 
+#iconestl {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+ 
+#icones {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+ 
+.botaotype {
+    padding: 10px;
+    border-radius: 100%;
+    border: none;
+    background-color: var(--cor-icone-nao-selecionado);
+    width: 45px;
+    height: 45px;
+}
+ 
+.botaotype img {
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    filter: var(--cor-icones);
+    cursor: pointer;
+}
+ 
+  .botaotype:hover {
+    background-color: var(--cor-hover-icones);
+}
+ 
+.botaotype.especial {
+    background-color: var(--cor-hover-icones);
+}
+ 
+.menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+ 
+#block {
+    flex: 1;
+    width: 170px;
+    height: 180px;
+    background-color: rgb(205, 205, 205);
+}
+ 
+#block:hover {
+    background-color: rgb(180, 180, 180);
+}
+ 
+#navtenis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    font-size: large;
+    gap: 10px;
+    height: 100%;
+  }
+ 
+  #navtenis img {
+    margin-top: 10px;
+    width: 130px;
+    height: 130px;
+    border-radius: 100%;
+  }
+
+  .temas {
+    display: none;
+    position: absolute;
+    background-color: var(--cor-menu-temas);
+    border: 1px solid #d9d9d9;
+    padding: 10px;
+    border-radius: 10px;
+}
+.menu-temas:hover .temas {
+    display: block;
+  }
+
+  #confirmacao {
+    width: 1000px;
+    height: 500px;
+    margin: 50px auto;
+    background-color: var(--cor-da-div-corpo);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .pagamento {
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .pagamento.cartao {
+    background-color: #9CA6FF;
+    color: #000;
+    display: flex;
+    justify-content: start;
+    flex: 1;
+  }
+  .pagamento.pix {
+    background-color: #6BBD65;
+    color: #000;
+    display: flex;
+    justify-content: start;
+    flex: 1;
+  }
+.titulo{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  color: black;
+  border-bottom: 1px solid black;
+  font-size: 40px;
+  width: 50%;
+}
+.titulo p{
+  display: flex;
+  justify-content: center;
+  
+}
+.nomes{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.respostas{
+  display: flex;
+  color: #0095D0;
+  font-family: 'Joan';
+  flex-direction: column;
+  gap: 20px;
+}
+.texto{
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  padding-right: 30px;
+}
+.imagem{
+  display: flex;
+  flex: 1;
+  padding-left: 30px;
+  position: relative;
+  width: 200px;
+  height: 270px;
+}
+#compras{
+  display: flex;
+}
+.metodo{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #000;
+}
+.metodo h3{
+  font-size: 25px;
+}
+#fazer-pedido {
+    background-color: black;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 40%;
+}
+.partebaixa{
+  display: flex;
+  flex-direction: row;
+}
+.botao{
+  display: flex;
+  justify-content: end;
+  flex: 2; 
+  flex-direction: column;
+  align-items: center;
+}
+.cinza{
+  background-color: #BCB9B9;
+}
+.imagem-tenis{
+  width: 80%;
+}
+.imagem-tenis img {
+      width: 100%;
+      height: auto;
+    }
+    a {
+      text-decoration: none;
+      color: black;
+  }
+
+/* sidebar */
+
+.sidebar-icon{
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    gap: 5px;
+    background-color: transparent;
+    border: none;
+    padding-right: 20px;
+    border-right: 2px solid #000;
+}
+.sidebar{
+    padding-top: 50px;
+    height: 1000vh;
+    width: 0; /* começa fechado */
+    position: fixed;
+    top: 0; /*mudei isso*/
+    left: 0; /* se quiser do lado direito, troque para right: 0 */
+    z-index: 1000;
+    flex-direction: column;
+    background-color: #fff;
+    color: #000;
+    gap: 10px;
+    overflow-x: hidden; /* esconde o conteúdo quando fechado */
+    transition: width 0.3s ease; /* animação suave */
+    display: flex;
+    margin: 0;
+}
+.sidebar.open{
+    width: 200px;/* e mudei isso (tava 250)*/
+}
+.sidebar a{
+    cursor: pointer;
+    padding: 10px 0px 10px 30px;
+    border-radius: 15px;
+}
+.sidebar a:hover{
+    margin: 10px;
+    background-color: #CDCDCD;
+}
+
+@media (min-width: 1024px){
+    #confirmacao{
+        display: flex;
+        justify-content: center;
+        width: 90%;
+    }
+    nav{
+        gap: 100px;
+        flex-wrap: wrap;
+        padding: 5px;
+        padding-top: 0;
+    }
+}
+@media (min-width: 601px) and (max-width: 1023px){
+    #confirmacao{
+        display: flex;
+        justify-content: center;
+        height: 50vh;
+        width: 90%;
+    }
+    .menu{
+      display: none;
+    }
+    nav{
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 5px;
+        padding-top: 0;
+    }
+    .sidebar-icon{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #parte2{
+        justify-content: start;
+    }
+    #a{
+        display: none;
+    }
+    .p-a{
+        display: none;
+    }
+    .p{
+        border: none;
+        padding-left: 0px;
+        cursor: pointer;
+    }
+    .sidebarnormal{
+        display: none;
+    }
+    #pesquisar{
+        display: none;
+    }
+}
+@media (max-width: 600px){
+    #confirmacao{
+        display: flex;
+        justify-content: start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 70%;
+        height: 85vh;
+    }
+    .menu{
+      display: none;
+    }
+    nav{
+        gap: 30px;
+        flex-wrap: wrap;
+        padding: 5px;
+        padding-top: 0;
+    }
+    .p{
+        border-right: 2px solid var(--cor-das-linhas);
+        padding: 0;
+        padding-right: 5px;
+        color: var(--cor-das-linhas);
+        display: flex;
+    }
+    #ajuda{
+        color: var(--cor-das-linhas);
+        display: flex;
+    } 
+    #parte2{
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+    .titulo{
+      display: flex;
+      width: 100%;
+      border-bottom: 1px solid black;
+      margin-bottom: 20px;
+      color: black;
+      font-size: 30px;
+    }
+    .texto{
+      padding: 0;
+      width: 100%;
+    }
+    #compras{
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+    .partebaixa{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .metodo{
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+    }
+    .metodo h3{
+      display: flex;
+      font-size: 20px;
+      flex: 0;
+      width: 100%;
+    }
+    .pagamento.cartao, .pagamento.pix{
+      width: 90%;
+    }
+    .botao{
+      display: flex;
+      margin-top: 20px;
+      width: 100%;
+    }
+    #fazer-pedido {
+        width: 60%;
+        padding: 10px 15px;
+    }
+    .sidebar-icon{
+        display: flex;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    #parte2{
+        justify-content: start;
+    }
+    #acesibili{
+        display: none;
+    }
+    #ajuda{
+        display: none;
+    }
+    .p{
+        border: none;
+        padding-left: 0px;
+        cursor: pointer;
+    }
+    .sidebarnormal{
+        display: none;
+    }
+    #pesquisar{
+        display: none;
+    }
+  }

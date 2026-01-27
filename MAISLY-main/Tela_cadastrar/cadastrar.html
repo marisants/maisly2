@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISLY</title>
+    <link rel="stylesheet" href="cadastrar.css">
+</head>
+<body theme = "light">
+    <header>
+        <div id="parte1">
+            <a href="../Tela_inicio/inicio.html">
+                <img src="../imagem/logo.png" height="50" width="180">
+            </a>
+            <div id="icones">
+                <input id="pesquisar" type="text" placeholder="Pesquisar">
+                <button class="botaotype" onclick="abrirCurtido()">
+                    <img src="../imagem/coracao.png">
+                </button>
+                <button class="botaotype">
+                    <img src="../imagem/carrinho.png" onclick="abrirCarrinho()">
+                </button>
+                <a href="../Tela_perfil/perfil.html">
+                    <button class="botaotype especial">
+                        <img src="../imagem/pessoalogin.png">
+                    </button>
+                </a>
+            </div>
+        </div>
+        <div id="parte2"> 
+        <div class="menu-temas">
+                <p class="p"> <img src="../imagem/ferramenta.png" id="iconestl"> Temas</p>
+                <div class="temas"> 
+                <p id="light">Light</p>
+                <p id="dark">Dark</p>
+                <p id="baixa">Baixa visão</p>
+                </div>
+            </div>
+        <p class="p">  <img src="../imagem/acesibili.png" id="iconestl">Acessibilidade</p>
+        <p class="p-a"> <img src="../imagem/ajudasemfundo.png" id="iconestl"> Ajuda </p>
+        </div>
+    </header>
+    <nav id="menutenis">
+        <a href="../Tela_produto01/produto1.html"><p class="p2">Promoções</p></a>
+        <a href="../Tela_produto02/produto2.html"><p class="p2">Masculino</p></a>
+        <a href="../Tela_produto03/produto3.html"><p class="p2">Feminino</p></a>
+        <a href="../Tela_produto04/produto4.html"><p class="p2">Infantil</p></a>
+        <a href="../Tela_produto05/produto5.html"><p class="p2">Social</p></a>
+        <a href="../Tela_produto06/produto6.html"><p class="p2">Casual</p></a>
+        <a href="../Tela_produto07/produto7.html"><p class="p2">Esportivo</p></a>
+        <a href="../Tela_produto08/produto8.html"><p class="p2">Sneaker</p></a>
+    </nav>
+    <section>
+        <div id="corpo">
+            <form id="form1">
+                <p class="titulo">Minha conta</p>
+                <input class="caixa1" type="text" placeholder="E-Mail" required>
+                <input class="caixa1" type="text" placeholder="Senha" required>
+                <button class="botao">Entrar</button>
+            </form>
+            <div class="linha"></div>
+            <form id="form2">
+                <p class="titulo">Cadastre-se agora</p>
+                <input class="caixa2" type="text" placeholder="Nome" required>
+                <input class="caixa2" type="text" placeholder="Sobrenome" required>
+                <input class="caixa2" type="text" placeholder="E-Mail" required>
+                <input class="caixa2" type="text" placeholder="Senha" required>
+                <button class="botao">Criar conta</button>
+            </form>
+        </div>
+    </section>
+    <script>
+        // Aplica o tema
+        const temaSalvo = localStorage.getItem('tema');
+        if (temaSalvo) {
+            document.body.setAttribute('theme', temaSalvo);
+        }
+    
+        function aplicarTema(tema) {
+            document.body.setAttribute('theme', tema);
+            localStorage.setItem('tema', tema);
+        }
+
+        document.getElementById('dark').addEventListener('click', () => aplicarTema('dark'));
+        document.getElementById('light').addEventListener('click', () => aplicarTema('light'));
+        document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
+
+        //Função para abrir carrinho (cheio ou vazio)
+        function abrirCarrinho() {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            if (carrinho.length > 0) {
+                window.location.href = '../Tela_carrinho/carrinho.html';
+            } else {
+                window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
+            }
+        }
+
+        // Função para abrir curtidos (cheio e vazio)
+        function abrirCurtido() {
+            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
+            if (curtido.length > 0) {
+                window.location.href = '../Tela_curtido/curtidos2.html';
+            } else {
+                window.location.href = '../Tela_curtidovazio/curtidovazio.html';
+            }
+        }
+    </script>
+</body>
+</html>
