@@ -55,7 +55,7 @@
             <form id="form1">
                 <p class="titulo">Minha conta</p>
                 <input class="caixa1" type="text" placeholder="E-Mail" required>
-                <input class="caixa1" type="text" placeholder="Senha" required>
+                <input class="caixa1" type="password" placeholder="Senha" required>
                 <button class="botao">Entrar</button>
             </form>
             <div class="linha"></div>
@@ -64,46 +64,15 @@
                 <input class="caixa2" type="text" placeholder="Nome" required>
                 <input class="caixa2" type="text" placeholder="Sobrenome" required>
                 <input class="caixa2" type="text" placeholder="E-Mail" required>
-                <input class="caixa2" type="text" placeholder="Senha" required>
+                <input class="caixa2" type="password" placeholder="Senha" required>
+                <div class="mostrarsenha">
+                    <input type="checkbox" id="mostrarSenha">
+                    <p>Mostrar senha</p>
+                </div>
                 <button class="botao">Criar conta</button>
             </form>
         </div>
     </section>
-    <script>
-        // Aplica o tema
-        const temaSalvo = localStorage.getItem('tema');
-        if (temaSalvo) {
-            document.body.setAttribute('theme', temaSalvo);
-        }
-    
-        function aplicarTema(tema) {
-            document.body.setAttribute('theme', tema);
-            localStorage.setItem('tema', tema);
-        }
-
-        document.getElementById('dark').addEventListener('click', () => aplicarTema('dark'));
-        document.getElementById('light').addEventListener('click', () => aplicarTema('light'));
-        document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
-
-        //Função para abrir carrinho (cheio ou vazio)
-        function abrirCarrinho() {
-            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-            if (carrinho.length > 0) {
-                window.location.href = '../Tela_carrinho/carrinho.html';
-            } else {
-                window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
-            }
-        }
-
-        // Função para abrir curtidos (cheio e vazio)
-        function abrirCurtido() {
-            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
-            if (curtido.length > 0) {
-                window.location.href = '../Tela_curtido/curtidos2.html';
-            } else {
-                window.location.href = '../Tela_curtidovazio/curtidovazio.html';
-            }
-        }
-    </script>
+    <script src ="cadastrar.js"></script>
 </body>
 </html>

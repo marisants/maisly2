@@ -354,3 +354,27 @@ a{
         width: 50%;
     }
 }
+
+.mostrarsenha {
+  display: flex;
+  align-items: center;
+  gap: 6px;               
+  margin-top: -10px;      
+  margin-bottom: 12px;
+}
+
+.mostrarsenha p {
+  font-size: 14px;
+  color: var(--cor-nomes-form); 
+  margin: 0;
+}
+
+.mostrarsenha input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
