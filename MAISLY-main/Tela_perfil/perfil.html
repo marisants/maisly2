@@ -71,15 +71,15 @@
         <div id="corpo">
             <div id="form">
                 <p class="perfil">Meu perfil</p>
-                <p class="caixa2">Nome     *************</p>
-                <p class="caixa2">Sobrenome     *********</p>
-                <p class="caixa2">E-Mail     *************</p>
-                <p class="caixa2">Senha     *************</p>
+                <p class="caixa2">Nome: <span id="perfil-nome"></span></p>
+                    <p class="caixa2">Sobrenome: <span id="perfil-sobrenome"></span></p>
+                    <p class="caixa2">E-mail: <span id="perfil-email"></span></p>
+                    <p class="caixa2">Senha: <span id="perfil-senha"></span></p>
                 <button class="botao" onclick="voltar()">Sair</button>
             </div>
         </div>
     </section>
-    <script>
+    <script src="perfil.js">
         // Aplica o tema
         const temaSalvo = localStorage.getItem('tema');
         if (temaSalvo) {

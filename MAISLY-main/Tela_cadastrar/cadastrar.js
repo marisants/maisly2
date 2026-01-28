@@ -65,7 +65,11 @@ function cadastrar(e) {
   usuarios.push(usuario);
   localStorage.setItem("usuarios", JSON.stringify(usuarios));
 
-  alert("Usuário cadastrado com sucesso");
+
+
+  //alert("Usuário cadastrado com sucesso");
+  window.location.href = '../Tela_inicio/inicio.html';
+
   cadastro.reset();
 }
 
@@ -82,7 +86,9 @@ function login(e) {
   const usuario = verificarUsuario(email);
 
   if (usuario && usuario.senha === senha) {
-    alert("Entrando na conta");
+    //alert("Entrando na conta");
+    localStorage.setItem("usuarioLogado", JSON.stringify(usuario))
+    window.location.href = '../Tela_inicio/inicio.html';
   } else {
     alert("Usuário ou senha incorretos");
   }
@@ -100,6 +106,17 @@ checksenha.addEventListener("change", () => {
     inputSenha.type = "text";
   } else {
     inputSenha.type = "password";
+  }
+});
+
+const checksenhalogin = document.getElementById("mostrarsenhalogin")
+const inputSenhalogin = document.getElementsByClassName("caixa1")[1];
+
+checksenhalogin.addEventListener("change", () => {
+  if (checksenhalogin.checked) {
+    inputSenhalogin.type = "text";
+  } else {
+    inputSenhalogin.type = "password";
   }
 });
 
