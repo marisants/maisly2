@@ -98,9 +98,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_19.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('tenis KD 18', 1320,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('tenis KD 18', 1320,99)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('kd-18','Tênis KD 18',1320.99,'../imagem/tenis_wemylly_19.png',10)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
 
+                    <button onclick="adicionarAoCurtido('Tênis KD 18',1320.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <div id = info_tenis_>
@@ -131,9 +135,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_20.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('tenis  Jordan Luka 77', 1432,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('tenis  Jordan Luka 77', 1432,99)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('luka-4','Tênis Luka 4',1224.99,'../imagem/tenis_wemylly_21.png',10)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
 
+                    <button onclick="adicionarAoCurtido('Tênis Luka 4',1224.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <div id = info_tenis_>
@@ -211,27 +219,27 @@
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
         // função do carrinho
-        function adicionarAoCarrinho(nome, preco) {
+        function adicionarAoCarrinho(id, nome, preco, img, tamanho) {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-            let produto = {
-                nome: nome,
-                preco: preco,
-                quantidade: 1
-            };
-
-            let existente = carrinho.find(item => item.nome === nome);
+            const existente = carrinho.find(
+                p => p.id === id && p.tamanho === tamanho
+            );
 
             if (existente) {
-                existente.quantidade += 1; 
+                existente.qtd++;
             } else {
-                carrinho.push(produto); 
+                carrinho.push({
+                    id,
+                    nome,
+                    preco,
+                    img,
+                    qtd: 1,
+                    tamanho
+                });
             }
 
-            
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-            alert(`"${nome}" adicionado ao carrinho!`);
+            alert("Produto adicionado ao carrinho");
         }
 
          // Função dos curtidos

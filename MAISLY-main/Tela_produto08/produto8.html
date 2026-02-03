@@ -98,9 +98,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_22.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('SB x Air Jordan 4', 1799,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('SB x Air Jordan 4', 1799,99)"> <img src="../imagem/coracao.png" alt=""></button>
-                
+                    <button onclick="adicionarAoCarrinho('sb-air-jordan-4','SB x Air Jordan 4',1799.99,'../imagem/tenis_wemylly_22.png',10)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+
+                    <button onclick="adicionarAoCurtido('SB x Air Jordan 4',1799.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>SB x Air Jordan 4    </p>
@@ -158,9 +162,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_24.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Air Max Waffle', 1099,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Air Max Waffle', 1099,99)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('air-max-waffle','Air Max Waffle',1099.99,'../imagem/tenis_wemylly_24.png',10)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
 
+                    <button onclick="adicionarAoCurtido('Air Max Waffle',1099.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Air Max Waffle </p>
@@ -202,27 +210,27 @@
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
         // função do carrinho
-        function adicionarAoCarrinho(nome, preco) {
+        function adicionarAoCarrinho(id, nome, preco, img, tamanho) {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-            let produto = {
-                nome: nome,
-                preco: preco,
-                quantidade: 1
-            };
-
-            let existente = carrinho.find(item => item.nome === nome);
+            const existente = carrinho.find(
+                p => p.id === id && p.tamanho === tamanho
+            );
 
             if (existente) {
-                existente.quantidade += 1; 
+                existente.qtd++;
             } else {
-                carrinho.push(produto); 
+                carrinho.push({
+                    id,
+                    nome,
+                    preco,
+                    img,
+                    qtd: 1,
+                    tamanho
+                });
             }
 
-            
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-            alert(`"${nome}" adicionado ao carrinho!`);
+            alert("Produto adicionado ao carrinho");
         }
 
          // Função dos curtidos

@@ -98,8 +98,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_7.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike ZoomX VaporFly 4', 2154,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike ZoomX VaporFly 4', 2154,99)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('zoomx-vaporfly-4','Tênis Nike ZoomX VaporFly 4',2154.99,'../imagem/tenis_wemylly_7.png',33)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+
+                    <button onclick="adicionarAoCurtido('Tênis Nike ZoomX VaporFly 4',2154.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike ZoomX VaporFly 4  </p>
@@ -127,8 +132,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_8.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike Gamma Force', 417,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike Gamma Force', 417,99)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('gamma-force','Tênis Nike Gamma Force',417.99,'../imagem/tenis_wemylly_8.png',33)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+
+                    <button onclick="adicionarAoCurtido('Tênis Nike Gamma Force',417.99)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike Gamma Force  </p>
@@ -156,8 +166,13 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_9.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike Air Max Impact 4', 280,49)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike Air Max Impact 4', 280,49)"> <img src="../imagem/coracao.png" alt=""></button>
+                    <button onclick="adicionarAoCarrinho('air-max-impact-4','Tênis Nike Air Max Impact 4',280.49,'../imagem/tenis_wemylly_9.png',33)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+
+                    <button onclick="adicionarAoCurtido('Tênis Nike Air Max Impact 4',280.49)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike Air Max Impact 4  </p>
@@ -199,27 +214,27 @@
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
         // função do carrinho
-        function adicionarAoCarrinho(nome, preco) {
+        function adicionarAoCarrinho(id, nome, preco, img, tamanho) {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-            let produto = {
-                nome: nome,
-                preco: preco,
-                quantidade: 1
-            };
-
-            let existente = carrinho.find(item => item.nome === nome);
+            const existente = carrinho.find(
+                p => p.id === id && p.tamanho === tamanho
+            );
 
             if (existente) {
-                existente.quantidade += 1; 
+                existente.qtd++;
             } else {
-                carrinho.push(produto); 
+                carrinho.push({
+                    id,
+                    nome,
+                    preco,
+                    img,
+                    qtd: 1,
+                    tamanho
+                });
             }
 
-            
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-            alert(`"${nome}" adicionado ao carrinho!`);
+            alert("Produto adicionado ao carrinho");
         }
 
          // Função dos curtidos

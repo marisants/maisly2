@@ -110,14 +110,10 @@ input::placeholder{
     border-right: 2px solid var(--cor-das-linhas);
     padding-right: 20px;
 }
-
-
 body{
     background-color: var(--cor-fundo-principal);
     width: 100%;
 }
-
-
 #iconestl{
 height: 20px;
 width: 20px;
@@ -131,8 +127,6 @@ margin-right: 5px;
     background-color: var(--cor-icone-nao-selecionado);
     width: 45px;
     height: 45px;
-
-
 }
 .botaotype img{
     width: 25px;
@@ -156,8 +150,6 @@ margin-right: 5px;
 .botaotype:hover{
     background-color: var(--cor-hover-icones);
 }
-
-
 #navtenis{
     gap: 10px;
     flex-direction: column;
@@ -190,7 +182,6 @@ margin-right: 5px;
     align-items: center;
     width: 170px;
     height: 180px;
-   
 }
 #block:hover{
     background-color:  rgb(180, 180, 180);
@@ -227,8 +218,6 @@ margin-right: 5px;
     cursor: pointer;
 }
 section{
-
-
 padding-left: 100px;
 }
 .nav{
@@ -246,16 +235,14 @@ padding-left: 100px;
     justify-content: space-between;
     background-color: var(--cor-da-div-corpo);
     width: 1100px;
-    height: 450px;
+    min-height: 450px;
+    height: auto;
     border-radius: 25px;
     padding-left: 50px;
     padding-right: 50px;
-
-
+    margin-bottom: 30px;
 }
 .infoproduto{
-
-
     font-size: 35px;
     padding-left: 30px ;;
 }
@@ -266,7 +253,9 @@ padding-left: 100px;
 .produto img{
     display: flex;
     width: 500px;
-    height: 500px;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 .quantidade_num{
     display: flex;
@@ -290,6 +279,34 @@ padding-left: 100px;
 .qntd {
     color: var(--cor-texto-corpo);
 }
+.quantidade_num img {
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+}
+.btn-qtd {
+    background: #eee;
+    border: none;
+    padding: 6px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.btn-qtd:hover {
+    background: #ddd;
+}
+
+.quantidade_num {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantidade_num {
+    position: relative;
+    z-index: 5;
+}
 .quantidade img{
     filter: var(--cor-icones);
 }
@@ -305,8 +322,6 @@ padding-left: 100px;
 }
 .icones-valor img{
     width: 40px;
-
-
 }
 .valor{
     filter: var(--cor-icones);
@@ -318,8 +333,10 @@ padding-left: 100px;
 .container{
     display: flex;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     width: 100%;
+    background-color: transparent;
+    align-items: flex-start;
 }
 .botao{
     display: flex;
@@ -334,17 +351,22 @@ padding-left: 100px;
 .resumo{
     background-color: var(--cor-da-div-corpo);
     width: 340px;
-    height: 410px;
+    min-height: 410px;
+    height: auto;
+    max-height: 70vh;
+    overflow-y: auto;
     border-radius: 20px;
     padding: 10px;
 }
 .produtos{
     display: flex;
-    justify-content: space-between !important;
-    width: 280px;
-    height: 90px;
-    padding: 30px;
-   
+    justify-content: space-between;
+    width: 100%;
+    min-height: 90px;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+    align-items: center;
 }
 .quadradinho{
     background-color: #d9d9d9;
@@ -354,6 +376,7 @@ padding-left: 100px;
 .resumo img{
     width: 82px;
     height: 71px;
+    object-fit: contain;
 }
 .resumo p{
     color: var(--cor-texto-corpo);
@@ -394,7 +417,6 @@ padding-left: 100px;
     border-radius: 100%;
     height: 50px;
     width: 50px;
-
 }
 .lixinho:hover{
     background-color: #CDCDCD;
@@ -509,6 +531,17 @@ a {
 .sidebar a:hover{
     margin: 10px;
     background-color: #CDCDCD;
+}
+#resumo-produtos{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+#resumo-produtos img{
+    width: 100px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
 }
 
 @media (max-width:1890px){

@@ -113,11 +113,12 @@
             <h1 id="carrinho">Seu carrinho está vazio</h1>
             <img src="../imagem/carrinhovazio.png" alt="" height="190" width="190">
 
+            <a href="../Tela_produto01/produto1.html">
                 <button id="botao">
                      <img src="../imagem/adicionarcarrinho.png" id="iconestl" >
-                    Adicionar Produto
+                    Adicionar produto
                 </button>
-
+            </a>
         </nav>
     </div>
     <script>
@@ -160,6 +161,31 @@
                 icon.classList.remove("bi-x-lg");
                 icon.classList.add("bi-list");
             }
+
+        function carregarCarrinho() {
+            const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+            const vazio = document.getElementById("carrinho-vazio");
+            const cheio = document.getElementById("carrinho-cheio");
+
+            if (carrinho.length === 0) {
+                vazio.style.display = "flex";
+                cheio.style.display = "none";
+            } else {
+                vazio.style.display = "none";
+                cheio.style.display = "block";
+                renderizarItens(carrinho);
+            }
+        }
+
+        function renderizarItens(carrinho) {
+            console.log(carrinho);
+        }
+
+        function irParaProdutos() {
+            window.location.href = '../Tela_inicio/inicio.html';
+        }
+
+        window.onload = carregarCarrinho;
         }
     </script>
 </body>
