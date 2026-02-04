@@ -101,7 +101,7 @@
                         <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
                     </button>
 
-                    <button onclick="adicionarAoCurtido('Tênis Nike Air Max Alpha Trainer 6',522.49)" class="btn-icon">
+                    <button onclick="adicionarAoCurtido('air-max-alpha-6','Tênis Nike Air Max Alpha Trainer 6',522.49,'../imagem/tenis_wemylly_4.png',37)" class="btn-icon">
                         <img src="../imagem/coracao.png" alt="Curtir produto">
                     </button>
                 </div>
@@ -135,7 +135,7 @@
                         <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
                     </button>
 
-                    <button onclick="adicionarAoCurtido('Tênis Nike SB Force 58 Masculino',360.99)" class="btn-icon">
+                    <button onclick="adicionarAoCurtido('sb-force-58','Tênis Nike SB Force 58 Masculino',360.99,'../imagem/tenis_wemylly_5.png',37)" class="btn-icon">
                         <img src="../imagem/coracao.png" alt="Curtir produto">
                     </button>
                 </div>
@@ -169,7 +169,7 @@
                         <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
                     </button>
 
-                    <button onclick="adicionarAoCurtido('Tênis Nike Air Max Impact 4',223.24)" class="btn-icon">
+                    <button onclick="adicionarAoCurtido('air-max-impact-4','Tênis Nike Air Max Impact 4',223.24,'../imagem/tenis_wemylly_6.png',37)" class="btn-icon">
                         <img src="../imagem/coracao.png" alt="Curtir produto">
                     </button>
                 </div>
@@ -237,20 +237,18 @@
         }
 
          // Função dos curtidos
-         function adicionarAoCurtido(nome, preco) {
-            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
-
-            const existente = curtido.find(item => item.nome === nome);
-            if (existente) {
-                alert('Produto já curtido');
+         function adicionarAoCurtido(id, nome, preco, img, tamanho = 37) {
+            let curtidos = JSON.parse(localStorage.getItem('curtido')) || [];
+            const jaExiste = curtidos.some(p => p.id === id && p.tamanho === tamanho);
+            if (jaExiste) {
+                alert('Esse produto ja está curtido');
                 return;
             }
 
-            const produto = { nome, preco };
-            curtido.push(produto);
+            curtidos.push({id,nome,preco,img,tamanho});
 
-            localStorage.setItem('curtido', JSON.stringify(curtido));
-            alert(`${nome} adicionado aos curtidos!`);
+            localStorage.setItem('curtido', JSON.stringify(curtidos));
+            alert('Produto adicionado aos curtidos');
         }
 
         //Função para abrir carrinho (cheio ou vazio)

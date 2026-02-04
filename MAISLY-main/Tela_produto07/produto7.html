@@ -102,7 +102,7 @@
                         <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
                     </button>
 
-                    <button onclick="adicionarAoCurtido('Tênis KD 18',1320.99)" class="btn-icon">
+                    <button onclick="adicionarAoCurtido('kd-18','Tênis KD 18',1320.99,'../imagem/tenis_wemylly_19.png',10)" class="btn-icon">
                         <img src="../imagem/coracao.png" alt="Curtir produto">
                     </button>
                 </div>
@@ -135,11 +135,10 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_20.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('luka-4','Tênis Luka 4',1224.99,'../imagem/tenis_wemylly_21.png',10)" class="btn-icon">
+                    <button onclick="adicionarAoCarrinho('luka-77','Jordan Luka 77',1224.99,'../imagem/tenis_wemylly_21.png',10)" class="btn-icon">
                         <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
                     </button>
-
-                    <button onclick="adicionarAoCurtido('Tênis Luka 4',1224.99)" class="btn-icon">
+                    <button onclick="adicionarAoCurtido('luka-77','Jordan Luka 77',1224.99,'../imagem/tenis_wemylly_21.png',10)" class="btn-icon">
                         <img src="../imagem/coracao.png" alt="Curtir produto">
                     </button>
                 </div>
@@ -172,9 +171,12 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_21.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('tenis  Luka 4', 1224,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('tenis  Luka 4', 1224,99)"> <img src="../imagem/coracao.png" alt=""></button>
-
+                    <button onclick="adicionarAoCarrinho('luka-4','Tênis Luka 4',1224.99,'../imagem/tenis_wemylly_22.png',10)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+                    <button onclick="adicionarAoCarrinho('luka-4','Tênis Luka 4',1224.99,'../imagem/tenis_wemylly_22.png',10)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <div id = info_tenis_>
@@ -243,20 +245,18 @@
         }
 
          // Função dos curtidos
-         function adicionarAoCurtido(nome, preco) {
-            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
-
-            const existente = curtido.find(item => item.nome === nome);
-            if (existente) {
-                alert('Produto já curtido!');
+         function adicionarAoCurtido(id, nome, preco, img, tamanho = 37) {
+            let curtidos = JSON.parse(localStorage.getItem('curtido')) || [];
+            const jaExiste = curtidos.some(p => p.id === id && p.tamanho === tamanho);
+            if (jaExiste) {
+                alert('Esse produto ja está curtido');
                 return;
             }
 
-            const produto = { nome, preco };
-            curtido.push(produto);
+            curtidos.push({id,nome,preco,img,tamanho});
 
-            localStorage.setItem('curtido', JSON.stringify(curtido));
-            alert(`${nome} adicionado aos curtidos!`);
+            localStorage.setItem('curtido', JSON.stringify(curtidos));
+            alert('Produto adicionado aos curtidos');
         }
 
         //Função para abrir carrinho (cheio ou vazio)
