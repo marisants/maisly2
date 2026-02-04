@@ -98,9 +98,12 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_16.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike Court Vision Low', 428,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike Court Vision Low', 428,99)"> <img src="../imagem/coracao.png" alt=""></button>
-
+                    <button onclick="adicionarAoCarrinho('court-vision-low','Tênis Nike Court Vision Low',428.99,'../imagem/tenis_wemylly_16.png',37)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+                    <button onclick="adicionarAoCurtido('court-vision-low','Tênis Nike Court Vision Low',428.99,'../imagem/tenis_wemylly_16.png',37)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike Court Vision Low   </p>
@@ -128,9 +131,12 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_17.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike Gamma Force Feminino', 417,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike Gamma Force Feminino', 417,99)"> <img src="../imagem/coracao.png" alt=""></button>
-
+                    <button onclick="adicionarAoCarrinho('gamma-force-feminino','Tênis Nike Gamma Force Feminino',417.99,'../imagem/tenis_wemylly_17.png',33)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+                    <button onclick="adicionarAoCurtido('gamma-force-feminino','Tênis Nike Gamma Force Feminino',417.99,'../imagem/tenis_wemylly_17.png',33)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike Gamma Force Feminino </p>
@@ -158,9 +164,12 @@
             <div class="imagensdecima">
                 <img src="../imagem/tenis_wemylly_18.png" alt="" class="tenis">  
                 <div class="icones-valor">
-                    <button onclick="adicionarAoCarrinho('Tênis Nike Air Force 1 07', 759,99)"> <img src="../imagem/carrinho.png" alt=""></button>
-                    <button onclick="adicionarAoCurtido('Tênis Nike Air Force 1 07', 759,99)"> <img src="../imagem/coracao.png" alt=""></button>
-
+                    <button onclick="adicionarAoCarrinho('air-force-1-07','Tênis Nike Air Force 1 07',759.99,'../imagem/tenis_wemylly_18.png',37)" class="btn-icon">
+                        <img src="../imagem/carrinho.png" alt="Adicionar ao carrinho">
+                    </button>
+                    <button onclick="adicionarAoCurtido('air-force-1-07','Tênis Nike Air Force 1 07',759.99,'../imagem/tenis_wemylly_18.png',37)" class="btn-icon">
+                        <img src="../imagem/coracao.png" alt="Curtir produto">
+                    </button>
                 </div>
             </div>
             <p>Tênis Nike Air Force 1 "07  </p>
@@ -202,44 +211,42 @@
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
         // função do carrinho
-        function adicionarAoCarrinho(nome, preco) {
+        function adicionarAoCarrinho(id, nome, preco, img, tamanho) {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-
-            let produto = {
-                nome: nome,
-                preco: preco,
-                quantidade: 1
-            };
-
-            let existente = carrinho.find(item => item.nome === nome);
+            const existente = carrinho.find(
+                p => p.id === id && p.tamanho === tamanho
+            );
 
             if (existente) {
-                existente.quantidade += 1; 
+                existente.qtd++;
             } else {
-                carrinho.push(produto); 
+                carrinho.push({
+                    id,
+                    nome,
+                    preco,
+                    img,
+                    qtd: 1,
+                    tamanho
+                });
             }
 
-            
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
-
-            alert(`"${nome}" adicionado ao carrinho!`);
+            alert("Produto adicionado ao carrinho");
         }
         
          // Função dos curtidos
-         function adicionarAoCurtido(nome, preco) {
-            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
-
-            const existente = curtido.find(item => item.nome === nome);
-            if (existente) {
-                alert('Produto já curtido!');
+         function adicionarAoCurtido(id, nome, preco, img, tamanho = 37) {
+            let curtidos = JSON.parse(localStorage.getItem('curtido')) || [];
+            const jaExiste = curtidos.some(p => p.id === id && p.tamanho === tamanho);
+            if (jaExiste) {
+                alert('Esse produto ja está curtido');
                 return;
             }
 
-            const produto = { nome, preco };
-            curtido.push(produto);
+            curtidos.push({id,nome,preco,img,tamanho});
 
-            localStorage.setItem('curtido', JSON.stringify(curtido));
-            alert(`${nome} adicionado aos curtidos!`);
+            localStorage.setItem('curtido', JSON.stringify(curtidos));
+            alert('Produto adicionado aos curtidos');
         }
 
         //Função para abrir carrinho (cheio ou vazio)

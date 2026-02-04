@@ -110,99 +110,83 @@
     </nav>
 <div id="menucompra">
     <main id="container">
-        <section id="tudo">
-            <article id="itens">
-                <div id="tenisimg">
-                    <img src="../imagem/tenis0.jpeg">
-                </div>
-                    <div id="textall">
-                        <div>
-                            <h3 id="textonome">Tenis Nike resto do nome</h3>
-                        </div>
-                        <div>
-                            <h3>Até <span id="corverde">8 x R$100,00 sem juros</span></h3>
-                            <h3>Ver outras opções</h3>
-                            <h3>Cloud White / Collegiate Purple / Gold Metallic</h3>
-                        </div>
-                    </div>
-            </article>
-            <div id="botcompra">
-                <button id="botao">
-                    <img src="../imagem/adicionarcarrinho.png" id="iconestl">
-                    Adicionar Produto
-                </button>
-            </div>
-        </section>
-    </main>
+        <section id="tudo" class="lista-curtidos">
 
-    <main id="container">
-        <section id="tudo">
-            <article id="itens">
-                <div id="tenisimg">
-                    <img src="../imagem/tenis0.jpeg">
-                </div>
-                    <div id="textall">
-                        <div>
-                            <h3 id="textonome">Tenis Nike resto do nome</h3>
-                        </div>
-                        <div>
-                            <h3>Até <span id="corverde">8 x R$100,00 sem juros</span></h3>
-                            <h3>Ver outras opções</h3>
-                            <h3>Cloud White / Collegiate Purple / Gold Metallic</h3>
-                        </div>
-                    </div>
-            </article>
-            <div id="botcompra">
-                <button id="botao">
-                    <img src="../imagem/adicionarcarrinho.png" id="iconestl">
-                    Adicionar Produto
-                </button>
-            </div>
         </section>
     </main>
-</div>
 
     <script>
-        // Aplica o tema
-        const temaSalvo = localStorage.getItem('tema');
-        if (temaSalvo) {
-            document.body.setAttribute('theme', temaSalvo);
-        }
-    
-        function aplicarTema(tema) {
-            document.body.setAttribute('theme', tema);
-            localStorage.setItem('tema', tema);
+        const listaCurtidos = JSON.parse(localStorage.getItem('curtido')) || [];
+        const container = document.querySelector('.lista-curtidos');
+
+        if (listaCurtidos.length === 0) {
+            window.location.href = '../Tela_curtidovazio/curtidovazio.html';
         }
 
-        document.getElementById('dark').addEventListener('click', () => aplicarTema('dark'));
-        document.getElementById('light').addEventListener('click', () => aplicarTema('light'));
-        document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
+        listaCurtidos.forEach((produto, index) => {
+            const item = document.createElement('section');
+            item.classList.add('tudo');
 
-        //Função para abrir carrinho (cheio ou vazio)
+            item.innerHTML = `
+                <article id="itens">
+                    <div id="tenisimg">
+                        <img src="${produto.img || '../imagem/tenis0.jpeg'}">
+                    </div>
+
+                    <div id="textall">
+                        <h3 id="textonome">${produto.nome}</h3>
+                        <h3>Preço: <span id="corverde">R$ ${produto.preco.toFixed(2)}</span></h3>
+                    </div>
+                </article>
+
+                <div id="botcompra">
+                    <button id="botao" onclick="moverParaCarrinho(${index})">
+                        <img src="../imagem/adicionarcarrinho.png" id="iconestl">
+                        Adicionar ao carrinho
+                    </button>
+
+                    <button id="botao" onclick="removerCurtido(${index})">
+                        Remover
+                    </button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        // remove dos curtidos
+        function removerCurtido(index) {
+            listaCurtidos.splice(index, 1);
+            localStorage.setItem('curtido', JSON.stringify(listaCurtidos));
+            location.reload();
+        }
+
+        // move para o carrinho
+        function moverParaCarrinho(index) {
+            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+            const produto = listaCurtidos[index];
+
+            carrinho.push({
+                id: produto.id || produto.nome,
+                nome: produto.nome,
+                preco: produto.preco,
+                img: produto.img || '../imagem/tenis0.jpeg',
+                qtd: 1,
+                tamanho: produto.tamanho || 37
+            });
+
+            localStorage.setItem('carrinho', JSON.stringify(carrinho));
+            alert('Produto adicionado ao carrinho');
+        }
+
         function abrirCarrinho() {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+
             if (carrinho.length > 0) {
                 window.location.href = '../Tela_carrinho/carrinho.html';
             } else {
                 window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
             }
         }
-
-        // Função abir sidebar
-        function openMenu() {
-            const menu = document.querySelector(".sidebar");
-            const icon = document.getElementById("icon");
-
-            menu.classList.toggle("open");
-
-            if (menu.classList.contains("open")) {
-                icon.classList.remove("bi-list");
-                icon.classList.add("bi-x-lg");
-            } else {
-                icon.classList.remove("bi-x-lg");
-                icon.classList.add("bi-list");
-            }
-        }
-    </script>
+        </script>
 </html>
 

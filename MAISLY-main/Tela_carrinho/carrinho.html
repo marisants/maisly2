@@ -120,42 +120,7 @@
                 <div class="nav">
                     <p>Seu carrinho</p>
                 </div>
-                <div class="corpo">
-                    <div class="produto">
-                        <img src="../imagem/teniscarrinhocheio.png" alt="imagem indisponível">
-                    </div>
-                    <div class="infoproduto">
-                        <div class="geral">
-                            <p>Tênis de Vôlei Grafite Original |</p>
-                            <p>Respirável e Antiderrapante ( Original )</p>
-                            <br>
-                            <p>Cor:Branco,azul e laranja</p>
-                            <p>Tamanho: 37</p>
-                        </div>
-                        <div class="especifico">
-                            <div class="quantidade">
-                                <p class="qntd">Quantidade</p>
-                                <div class="quantidade_num">
-                                    <img src="../imagem/setinha.png" alt="">
-                                    <div class="num">
-                                        <p>1</p>
-                                    </div>
-                                    <img src="../imagem/setinhadireita.png" alt="">
-                                </div>
-                            </div>
-                            <div class="valor">
-                                <p>____________</p>
-                                <div class="valor_num">
-                                    <p>R$ 277,00</p>
-                                    <div class="icones-valor">
-                                        <div class="coracao"><img src="../imagem/coraçãointeiro.png" alt=""></div>
-                                        <div class="lixinho"><img src="../imagem/lixinho.png" alt=""></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div id="lista-carrinho"></div>
             </div>
             <div class="botao">
                 <img src="../imagem/seta.png" alt="">
@@ -166,11 +131,7 @@
                 </div>
                 <div class="resumoebotao">
                     <div class="resumo">
-                        <div class="produtos">
-                            <img src="../imagem/teniscarrinho_comfundo.png" alt="">
-                            <div class="quadradinho">
-                            </div>
-                        </div>
+                        <div class="produtos" id="resumo-produtos"></div>
                         <div class="info">
                             <p>Preço de varejo:</p>
                             <p class="preco">R$ 277,00</p>
@@ -187,7 +148,7 @@
 
                         </div>
                         <div class="finalizard">
-                            <button class="finalizar">
+                            <button class="finalizar" onclick="finalizarCompra()">
                                 Finalizar compra
                             </button>
                         </div>
@@ -195,7 +156,7 @@
                         <div class="button">
                             <button class="addproduto">
                                     <img src="../imagem/adicionarcarrinho.png" alt="" class="icn">
-                                    Adicionar produto
+                                    <a href="../Tela_produto01/produto1.html">Adicionar produto</a>
                             </button>
                         </div>
                     </div>
@@ -245,6 +206,131 @@
                 icon.classList.add("bi-list");
             }
         }
+
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        const lista = document.getElementById("lista-carrinho");
+
+        // se não tiver nada, volta pro carrinho vazio
+        if (carrinho.length === 0) {
+            window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+        }
+
+        // quando algo for adcionado pro carrinho
+        function renderizarCarrinho() {
+            lista.innerHTML = carrinho.map((p, index) => `
+            <div class="corpo">
+                <div class="produto">
+                    <img src="${p.img}" alt="imagem indisponível">
+                </div>
+
+                <div class="infoproduto">
+                    <div class="geral">
+                        <p>${p.nome}</p>
+                        <br>
+                        <p>Tamanho: ${p.tamanho ?? '-'}</p>
+                    </div>
+
+                    <div class="especifico">
+                        <div class="quantidade">
+                            <p class="qntd">Quantidade</p>
+
+                            <div class="quantidade_num">
+                                <button class="btn-qtd" onclick="alterarQtd(${index}, -1)">−</button>
+
+                                <div class="num">
+                                    <p>${p.qtd}</p>
+                                </div>
+
+                                <button class="btn-qtd" onclick="alterarQtd(${index}, 1)">+</button>
+                            </div>
+                        </div>
+
+                        <div class="valor">
+                            <p>____________</p>
+                            <div class="valor_num">
+                                <p>R$ ${(p.preco * p.qtd).toFixed(2)}</p>
+
+                                <div class="icones-valor">
+                                    <div class="lixinho">
+                                        <img src="../imagem/lixinho.png"
+                                            onclick="removerDoCarrinho(${index})">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        atualizarResumo();
+    }
+
+        // atualiza o resumo dos produtos la embaixo
+        function atualizarResumo() {
+            const total = carrinho.reduce(
+                (soma, p) => soma + p.preco * p.qtd, 0
+            );
+
+            const totalItens = carrinho.reduce(
+                (soma, p) => soma + p.qtd, 0
+            );
+
+            document.querySelectorAll('.preco').forEach(el => {
+                el.innerText = `R$ ${total.toFixed(2)}`;
+            });
+
+            document.querySelector('.info2 p').innerText =
+                `Subtotal (${totalItens} item(ns))`;
+
+            const resumoProdutos = document.getElementById('resumo-produtos');
+            resumoProdutos.innerHTML = carrinho.map(p => `
+                <img src="${p.img}" alt="${p.nome}">
+            `).join('');
+        }
+
+        // muda a quantidade dos produtos se clicar na setinha
+        function alterarQtd(index, valor) {
+            carrinho[index].qtd += valor;
+
+            if (carrinho[index].qtd <= 0) {
+                carrinho.splice(index, 1);
+            }
+
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+            if (carrinho.length === 0) {
+                window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+                return;
+            }
+
+            renderizarCarrinho();
+        }
+
+        // clica na lixeirinha pra tirar do carrinho
+        function removerDoCarrinho(index) {
+            carrinho.splice(index, 1);
+            localStorage.setItem("carrinho", JSON.stringify(carrinho));
+
+            if (carrinho.length === 0) {
+                window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+                return;
+            }
+
+            renderizarCarrinho();
+        }
+
+        // finaliza a comprra e esvazia o carrinho
+        function finalizarCompra() {
+            console.log("Sua compra foi feita ;)");
+
+            carrinho = [];
+            localStorage.removeItem("carrinho");
+
+            window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+        }
+
+        renderizarCarrinho();
     </script>
 </body>
 </html>
