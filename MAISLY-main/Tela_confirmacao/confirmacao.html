@@ -123,16 +123,15 @@
                     <p>Data de entrega :</p>
                 </div>
                 <div class="respostas">
-                    <p>R$ 277,00</p>
-                    <p>1 item</p>
-                    <p>14/07/2025</p>
-                    <p>25/07/2025</p>
-               </div>
+                  <p id="total-compra">R$ 0,00</p>
+                  <p id="qtd-itens">0 item(ns)</p>
+                  <p id="data-envio">--/--/----</p>
+                  <p id="data-entrega">--/--/----</p>
+                </div>
+
             </div>
             <div class="imagem">
-                <div class="imagem-tenis">
-                    <img src="../imagem/teniscarrinhocheio.png" alt="Tênis estiloso">
-                </div>
+              <div class="imagem-tenis" id="imagens-produtos"></div>
             </div>
         </div>
         <div class="partebaixa">
@@ -147,57 +146,133 @@
         </div>
     </div>
 
-    <script>
-        // Aplica o tema
-        const temaSalvo = localStorage.getItem('tema');
-        if (temaSalvo) {
-            document.body.setAttribute('theme', temaSalvo);
-        }
-    
-        function aplicarTema(tema) {
-            document.body.setAttribute('theme', tema);
-            localStorage.setItem('tema', tema);
-        }
+<script>
+  const temaSalvo = localStorage.getItem('tema');
+  if (temaSalvo) {
+    document.body.setAttribute('theme', temaSalvo);
+  }
 
-        document.getElementById('dark').addEventListener('click', () => aplicarTema('dark'));
-        document.getElementById('light').addEventListener('click', () => aplicarTema('light'));
-        document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
+  function aplicarTema(tema) {
+    document.body.setAttribute('theme', tema);
+    localStorage.setItem('tema', tema);
+  }
 
-        //Função para abrir carrinho (cheio ou vazio)
-        function abrirCarrinho() {
-            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-            if (carrinho.length > 0) {
-                window.location.href = '../Tela_carrinho/carrinho.html';
-            } else {
-                window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
-            }
-        }
+  document.getElementById('dark')?.addEventListener('click', () => aplicarTema('dark'));
+  document.getElementById('light')?.addEventListener('click', () => aplicarTema('light'));
+  document.getElementById('baixa')?.addEventListener('click', () => aplicarTema('baixa'));
 
-        // Função para abrir curtidos (cheio e vazio)
-        function abrirCurtido() {
-            let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
-            if (curtido.length > 0) {
-                window.location.href = '../Tela_curtido/curtidos2.html';
-            } else {
-                window.location.href = '../Tela_curtidovazio/curtidovazio.html';
-            }
-        }
+  function openMenu() {
+    const menu = document.querySelector(".sidebar");
+    const icon = document.getElementById("icon");
 
-        // Função abir sidebar
-        function openMenu() {
-            const menu = document.querySelector(".sidebar");
-            const icon = document.getElementById("icon");
+    menu.classList.toggle("open");
 
-            menu.classList.toggle("open");
+    if (menu.classList.contains("open")) {
+      icon.classList.replace("bi-list", "bi-x-lg");
+    } else {
+      icon.classList.replace("bi-x-lg", "bi-list");
+    }
+  }
 
-            if (menu.classList.contains("open")) {
-                icon.classList.remove("bi-list");
-                icon.classList.add("bi-x-lg");
-            } else {
-                icon.classList.remove("bi-x-lg");
-                icon.classList.add("bi-list");
-            }
-        }
-    </script>
+  function abrirCarrinho() {
+    let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+    if (carrinho.length > 0) {
+      window.location.href = '../Tela_carrinho/carrinho.html';
+    } else {
+      window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
+    }
+  }
+
+  function abrirCurtido() {
+    let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
+    if (curtido.length > 0) {
+      window.location.href = '../Tela_curtido/curtidos2.html';
+    } else {
+      window.location.href = '../Tela_curtidovazio/curtidovazio.html';
+    }
+  }
+
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  if (carrinho.length === 0) {
+    window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+  }
+
+  const total = carrinho.reduce((soma, p) => soma + p.preco * p.qtd, 0);
+  const totalItens = carrinho.reduce((soma, p) => soma + p.qtd, 0);
+
+  document.getElementById("total-compra").innerText =
+    `R$ ${total.toFixed(2)}`;
+
+  document.getElementById("qtd-itens").innerText =
+    `${totalItens} item(ns)`;
+
+  function formatarData(data) {
+    return data.toLocaleDateString("pt-BR");
+  }
+
+  const hoje = new Date();
+  const envio = new Date(hoje);
+  envio.setDate(hoje.getDate() + 2);
+
+  const entrega = new Date(hoje);
+  entrega.setDate(hoje.getDate() + 10);
+
+  document.getElementById("data-envio").innerText = formatarData(envio);
+  document.getElementById("data-entrega").innerText = formatarData(entrega);
+
+  const imagens = document.getElementById("imagens-produtos");
+  imagens.innerHTML = carrinho.map(p => `
+    <img src="${p.img}" alt="${p.nome}">
+  `).join('');
+
+document.getElementById("fazer-pedido").addEventListener("click", () => {
+  const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+  if (carrinho.length === 0) {
+    alert("Nenhuma compra encontrada.");
+    return;
+  }
+
+  const total = carrinho.reduce(
+    (soma, p) => soma + p.preco * p.qtd, 0
+  );
+
+  const comprovante = {
+    dataPedido: new Date().toLocaleDateString("pt-BR"),
+
+    itens: carrinho.map(p => ({
+      nome: p.nome,
+      quantidade: p.qtd,
+      precoUnitario: p.preco,
+      subtotal: p.preco * p.qtd
+    })),
+
+    totalCompra: total.toFixed(2),
+    quantidadeItens: carrinho.reduce((s, p) => s + p.qtd, 0),
+
+    envio: document.getElementById("data-envio").innerText,
+    entrega: document.getElementById("data-entrega").innerText
+  };
+
+  const json = JSON.stringify(comprovante, null, 2);
+  const blob = new Blob([json], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "comprovante-compra.json";
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+  localStorage.removeItem("carrinho");
+  alert("Pedido realizado com sucesso, confira seu comprovante!");
+  window.location.href = "../Tela_inicio/inicio.html";
+});
+
+
+</script>
+
 </body>
 </html>

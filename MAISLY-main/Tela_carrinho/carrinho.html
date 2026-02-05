@@ -122,9 +122,7 @@
                 </div>
                 <div id="lista-carrinho"></div>
             </div>
-            <div class="botao">
-                <img src="../imagem/seta.png" alt="">
-            </div>
+            
             <div class="resumo1">
                 <div class="nav">
                     <p>Resumo do pedido</p>
@@ -322,13 +320,9 @@
 
         // finaliza a comprra e esvazia o carrinho
         function finalizarCompra() {
-            console.log("Sua compra foi feita ;)");
+  window.location.href = "../Tela_confirmacao/confirmacao.html";
+}
 
-            carrinho = [];
-            localStorage.removeItem("carrinho");
-
-            window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
-        }
 
         renderizarCarrinho();
     </script>

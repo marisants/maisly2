@@ -526,3 +526,23 @@ input::placeholder {
         display: none;
     }
   }
+
+/* === IMAGENS VINDAS DO CARRINHO === */
+#imagens-produtos {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#imagens-produtos img {
+  width: 160px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+.imagem {
+  max-height: 300px;
+  overflow-y: auto;
+}
