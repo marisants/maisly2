@@ -315,6 +315,17 @@ margin-right: 5px;
     gap: 10px;
     justify-content: space-around;
 }
+.tamanhos button{
+    padding: 10px;
+    background-color: #d9d9d9;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.tamanhos button.selecionado{
+    background-color: blue;
+    color: white;
+}
 a {
     text-decoration: none;
     color: black;

@@ -118,17 +118,17 @@
                 <p class="um">R$ 2154,99</p>
             </div>
             <div class="pa_0">
-                <div id = parte_1>
-                    <p>33</p>
-                    <p>34</p>
-                    <p>35</p>
-                    <p>36</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 37)">37</button>
+                    <button onclick="selecionarTamanho(this, 38)">38</button>
+                    <button onclick="selecionarTamanho(this, 39)">39</button>
+                    <button onclick="selecionarTamanho(this, 40)">40</button>
                 </div>
-                <div id = parte_2>
-                    <p>37</p>
-                    <p>38</p>
-                    <p>39</p>
-                    <p>40</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 41)">41</button>
+                    <button onclick="selecionarTamanho(this, 42)">42</button>
+                    <button onclick="selecionarTamanho(this, 43)">43</button>
+                    <button onclick="selecionarTamanho(this, 44)">44</button>
                 </div>
             </div>
         </div>
@@ -152,17 +152,17 @@
                <p class="dois">R$ 417,99</p>
             </div>
             <div class="pa_0">
-                <div id = parte_1>
-                    <p>33</p>
-                    <p>34</p>
-                    <p>35</p>
-                    <p>36</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 37)">37</button>
+                    <button onclick="selecionarTamanho(this, 38)">38</button>
+                    <button onclick="selecionarTamanho(this, 39)">39</button>
+                    <button onclick="selecionarTamanho(this, 40)">40</button>
                 </div>
-                <div id = parte_2>
-                    <p>37</p>
-                    <p>38</p>
-                    <p>39</p>
-                    <p>40</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 41)">41</button>
+                    <button onclick="selecionarTamanho(this, 42)">42</button>
+                    <button onclick="selecionarTamanho(this, 43)">43</button>
+                    <button onclick="selecionarTamanho(this, 44)">44</button>
                 </div>
             </div>
         </div>
@@ -186,17 +186,17 @@
                 <p class="tres">R$ 280,49 </p>
             </div>
             <div class="pa_0">
-                <div id = parte_1>
-                    <p>33</p>
-                    <p>34</p>
-                    <p>35</p>
-                    <p>36</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 37)">37</button>
+                    <button onclick="selecionarTamanho(this, 38)">38</button>
+                    <button onclick="selecionarTamanho(this, 39)">39</button>
+                    <button onclick="selecionarTamanho(this, 40)">40</button>
                 </div>
-                <div id = parte_2>
-                    <p>37</p>
-                    <p>38</p>
-                    <p>39</p>
-                    <p>40</p>
+                <div class="tamanhos">
+                    <button onclick="selecionarTamanho(this, 41)">41</button>
+                    <button onclick="selecionarTamanho(this, 42)">42</button>
+                    <button onclick="selecionarTamanho(this, 43)">43</button>
+                    <button onclick="selecionarTamanho(this, 44)">44</button>
                 </div>
             </div>
         </div>
@@ -219,12 +219,15 @@
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
         // função do carrinho
-        function adicionarAoCarrinho(id, nome, preco, img, tamanho) {
+        function adicionarAoCarrinho(id, nome, preco, img) {
+            if(!tamanhoSelecionado){
+                alert("Selecione um tamanho primeiro!");
+                return;
+            }
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
             const existente = carrinho.find(
-                p => p.id === id && p.tamanho === tamanho
+                p => p.id === id && p.tamanho === tamanhoSelecionado
             );
-
             if (existente) {
                 existente.qtd++;
             } else {
@@ -234,27 +237,53 @@
                     preco,
                     img,
                     qtd: 1,
-                    tamanho
+                    tamanho: tamanhoSelecionado
                 });
             }
-
             localStorage.setItem('carrinho', JSON.stringify(carrinho));
             alert("Produto adicionado ao carrinho");
         }
 
          // Função dos curtidos
-         function adicionarAoCurtido(id, nome, preco, img, tamanho = 37) {
-            let curtidos = JSON.parse(localStorage.getItem('curtido')) || [];
-            const jaExiste = curtidos.some(p => p.id === id && p.tamanho === tamanho);
-            if (jaExiste) {
-                alert('Esse produto ja está curtido');
+         function adicionarAoCurtido(id, nome, preco, img) {
+
+            if(!tamanhoSelecionado){
+                alert("Selecione um tamanho primeiro!");
                 return;
             }
 
-            curtidos.push({id,nome,preco,img,tamanho});
+            let curtidos = JSON.parse(localStorage.getItem('curtido')) || [];
+
+            const jaExiste = curtidos.some(
+                p => p.id === id && p.tamanho === tamanhoSelecionado
+            );
+
+            if (jaExiste) {
+                alert('Esse produto já está curtido');
+                return;
+            }
+
+            curtidos.push({
+                id,
+                nome,
+                preco,
+                img,
+                tamanho: tamanhoSelecionado
+            });
 
             localStorage.setItem('curtido', JSON.stringify(curtidos));
             alert('Produto adicionado aos curtidos');
+        }
+
+        let tamanhoSelecionado = null;
+
+        //Função dos tamanhos
+        function selecionarTamanho(botao, tamanho){
+            document.querySelectorAll(".tamanhos button").forEach(btn => {
+                btn.classList.remove("selecionado");
+            });
+            botao.classList.add("selecionado");
+            tamanhoSelecionado = tamanho;
         }
 
         //Função para abrir carrinho (cheio ou vazio)
