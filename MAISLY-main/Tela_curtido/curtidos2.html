@@ -42,8 +42,13 @@
                 </div>
             </div>
         <p class="p" id="a">  <img src="../imagem/acesibili.png" id="iconestl">Acessibilidade</p>
-        <p class="p-a"> <img src="../imagem/ajudasemfundo.png" id="iconestl"> Ajuda </p>
-        </div>
+
+        <a href="../tela_ajuda/tela_ajuda.html" class="p">
+            <img src="../imagem/ajudasemfundo.png" id="iconestl">
+            Ajuda
+        </a>
+
+    </div>
     </header>
 
     <nav id="menutenis">
@@ -122,6 +127,10 @@
         if (listaCurtidos.length === 0) {
             window.location.href = '../Tela_curtidovazio/curtidovazio.html';
         }
+
+        // do msm jeito do carrinho , mas agr ordena só pelo preço , pq n tem cm curtir duas vezes no msm momento 
+        listaCurtidos.sort((a, b) => b.preco - a.preco);
+
 
         listaCurtidos.forEach((produto, index) => {
             const item = document.createElement('section');

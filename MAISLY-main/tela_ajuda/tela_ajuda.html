@@ -3,32 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <title>MAISLY</title>
-    <link rel="stylesheet" href="perfil.css">
+    <link rel="stylesheet" href="tela_ajuda.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
-<body theme = 'light'>
+<body theme = light>
     <header>
         <div id="parte1">
             <a href="../Tela_inicio/inicio.html">
                 <img src="../imagem/logo.png" height="50" width="180">
             </a>
             <div id="icones">
-                <input id="pesquisar" type="text" placeholder="Pesquisar" >
+                <input id="pesquisar" type="text" placeholder="Pesquisar">
+                
+                
                 <button class="botaotype" onclick="abrirCurtido()">
-                    <img class="img" src="../imagem/coracao.png"  >
+                    <img src="../imagem/coracao.png">
                 </button>
-                <button  class="botaotype" onclick="abrirCarrinho()">
-                    <img class="img" src="../imagem/carrinho.png" >
+
+                <button class="botaotype especial">
+                    <img src="../imagem/carrinho.png" onclick="abrirCarrinho()">
                 </button>
+
                 <a href="../Tela_perfil/perfil.html">
-                    <button class="botaotype especial">
+                    <button class="botaotype">
                         <img src="../imagem/pessoalogin.png">
                     </button>
                 </a>
+
+                <a href="../Tela_acessibilidade/acessibilidade.html">
+                    <button class="botaotype">
+                        <img src="../imagem/acesibili.png">
+                </button>
+</a>
+
             </div>
+
         </div>
-        <div id="parte2">
+        <div id="parte2"> 
             <button onclick="openMenu()" class="sidebar-icon">
                 <i id="icon" class="bi bi-list"></i>
                 <span>Menu</span>
@@ -41,25 +53,67 @@
                 <p id="baixa">Baixa visão</p>
                 </div>
             </div>
-        <p class="p" id="acesibili"> <img src="../imagem/acesibili.png" id="iconestl"> Acessibilidade</p>
 
-        <a href="../tela_ajuda/tela_ajuda.html" class="p">
-            <img src="../imagem/ajudasemfundo.png" id="iconestl">
-            Ajuda
-        </a>
+            <a href="../Tela_acessibilidade/acessibilidade.html" class="p" id="acesibili">
+                <img src="../imagem/acesibili.png" id="iconestl">
+                Acessibilidade
+            </a>
 
+            <p class="p-a"> <img src="../imagem/ajudasemfundo.png" id="iconestl"> Ajuda </p>
+        
         </div>
     </header>
-    <nav>
-        <div class="sidebarnormal">
-            <a href="../Tela_produto01/produto1.html"><p class="p2">Promoções</p></a>
-            <a href="../Tela_produto02/produto2.html"><p class="p2">Masculino</p></a>
-            <a href="../Tela_produto03/produto3.html"><p class="p2">Feminino</p></a>
-            <a href="../Tela_produto04/produto4.html"><p class="p2">Infantil</p></a>
-            <a href="../Tela_produto05/produto5.html"><p class="p2">Social</p></a>
-            <a href="../Tela_produto06/produto6.html"><p class="p2">Casual</p></a>
-            <a href="../Tela_produto07/produto7.html"><p class="p2">Esportivo</p></a>
-            <a href="../Tela_produto08/produto8.html"><p class="p2">Sneaker</p></a>
+
+    <nav id="menutenis">
+        <div class="menu">
+            <a href="../Tela_produto01/produto1.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis0.jpeg" alt="">
+                    <p>Promoções</p>
+                </div>
+            </a>
+            <a href="../Tela_produto02/produto2.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis1.jpeg" alt="">
+                    <p>Masculino</p>
+                </div>
+            </a>
+            <a href="../Tela_produto03/produto3.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis2.jpeg" alt="">
+                    <p>Feminino</p>
+                </div>
+            </a>
+            <a href="../Tela_produto04/produto4.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis3.jpeg" alt="">
+                    <p>Infantil</p>
+                </div>
+            </a>
+            <a href="../Tela_produto05/produto5.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis4.jpeg" alt="">
+                    <p>Social</p>
+                </div>
+            </a>
+            <a href="../Tela_produto06/produto6.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis5.jpeg" alt="">
+                    <p>Casual</p>
+                </div>
+            </a>
+            <a href="../Tela_produto07/produto7.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis6.jpeg" alt="">
+                    <p>Esportivo</p>
+                </div>
+            </a>
+            <a href="../Tela_produto08/produto8.html"id="block">
+                <div id="navtenis">
+                    <img src="../imagem/tenis7.jpeg" alt="">
+                    <p>Sneaker</p>
+                </div>
+            </a>
         </div>
         <div class="sidebar">
             <a href="../Tela_produto01/produto1.html"><p>Promoções</p></a>
@@ -72,19 +126,9 @@
             <a href="../Tela_produto08/produto8.html"><p>Sneaker</p></a>
         </div>
     </nav>
-    <section>
-        <div id="corpo">
-            <div id="form">
-                <p class="perfil">Meu perfil</p>
-                <p class="caixa2">Nome: <span id="perfil-nome"></span></p>
-                    <p class="caixa2">Sobrenome: <span id="perfil-sobrenome"></span></p>
-                    <p class="caixa2">E-mail: <span id="perfil-email"></span></p>
-                    <p class="caixa2">Senha: <span id="perfil-senha"></span></p>
-                <button class="botao" onclick="voltar()">Sair</button>
-            </div>
-        </div>
-    </section>
-    <script src="perfil.js">
+
+    <script>
+
         // Aplica o tema
         const temaSalvo = localStorage.getItem('tema');
         if (temaSalvo) {
@@ -100,16 +144,6 @@
         document.getElementById('light').addEventListener('click', () => aplicarTema('light'));
         document.getElementById('baixa').addEventListener('click', () => aplicarTema('baixa'));
 
-        //Função para abrir carrinho (cheio ou vazio)
-        function abrirCarrinho() {
-            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-            if (carrinho.length > 0) {
-                window.location.href = '../Tela_carrinho/carrinho.html';
-            } else {
-                window.location.href = '../Tela_carrinhovazio/carrinhovazio.html';
-            }
-        }
-
         // Função para abrir curtidos (cheio e vazio)
         function abrirCurtido() {
             let curtido = JSON.parse(localStorage.getItem('curtido')) || [];
@@ -118,11 +152,6 @@
             } else {
                 window.location.href = '../Tela_curtidovazio/curtidovazio.html';
             }
-        }
-
-        // Função para voltar a tela anterior
-        function voltar() {
-            window.history.back()
         }
 
         // Função abir sidebar
@@ -140,7 +169,15 @@
                 icon.classList.add("bi-list");
             }
         }
-    
+
+        let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        const lista = document.getElementById("lista-carrinho");
+
+        // se não tiver nada, volta pro carrinho vazio
+        if (carrinho.length === 0) {
+            window.location.href = "../Tela_carrinhovazio/carrinhovazio.html";
+        }
+
     </script>
 </body>
 </html>
